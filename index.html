@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halosports 大会主催者向けガイド｜大会の作成と運営</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0c1526;--ink-2:#3c485c;--muted:#6b7688;--halo:#1a53a8;--halo-2:#2f6ad0;--accent:#e8590c;
+--paper:#f6f7fb;--card:#fff;--line:#e5e8f0;--warn-bd:#e8b23c;--warn-bg:#fdf6e6;--warn-ink:#8a5a05;
+--tip-bd:#1a53a8;--tip-bg:#eaf1fb;--tip-ink:#12407f;}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+.hero{background:radial-gradient(120% 90% at 88% -10%,rgba(47,106,208,.13),transparent 60%),linear-gradient(180deg,#fff,var(--paper));border-bottom:1px solid var(--line);padding:44px 22px 38px}
+.hero-in{max-width:720px;margin:0 auto}
+.brand{margin-bottom:26px} .brand img{height:30px;width:auto}
+.hero .kicker{font-family:"Zen Kaku Gothic New";font-weight:500;font-size:13px;letter-spacing:.16em;color:var(--accent);margin:0 0 12px}
+.hero h1{font-family:"Zen Kaku Gothic New";font-weight:900;font-size:clamp(29px,7.4vw,45px);line-height:1.18;margin:0 0 16px}
+.hero h1 .em{color:var(--halo)}
+.hero p.sub{font-size:16px;color:var(--ink-2);margin:0 0 24px;max-width:34em}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:12.5px;font-weight:500;color:var(--halo);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+/* intro / account card */
+.intro{max-width:720px;margin:22px auto 0;padding:0 22px}
+.acard{background:#fff;border:1px solid var(--line);border-left:4px solid var(--halo);border-radius:12px;padding:20px 20px 18px}
+.acard h2{font-family:"Zen Kaku Gothic New";font-weight:700;font-size:17px;margin:0 0 10px}
+.acard ul{margin:0 0 4px;padding-left:1.1em} .acard li{font-size:14.5px;color:var(--ink-2);margin:6px 0}
+.acard .oline{margin:14px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2)}
+.acard .oline a{color:var(--halo);font-weight:700;text-decoration:none;border-bottom:2px solid #cfe0f5}
+.acard .oline a:hover{border-bottom-color:var(--halo)}
+.tabs{position:sticky;top:0;z-index:20;background:rgba(246,247,251,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:26px}
+.tabs-in{max-width:720px;margin:0 auto;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding:0 12px}
+.tabs-in::-webkit-scrollbar{display:none}
+.tabs a{flex:0 0 auto;display:flex;align-items:center;gap:7px;white-space:nowrap;padding:13px 12px;font-size:13.5px;font-weight:500;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent}
+.tabs a .n{font-family:"Zen Kaku Gothic New";font-weight:700;font-size:11px;color:#fff;background:var(--muted);border-radius:5px;padding:2px 5px;line-height:1}
+.tabs a:hover{color:var(--ink)} .tabs a.active{color:var(--halo);border-bottom-color:var(--halo)} .tabs a.active .n{background:var(--halo)}
+main{max-width:720px;margin:0 auto;padding:8px 22px 80px}
+.chapter{padding-top:40px} .ch-head{margin-bottom:20px}
+.eyebrow{margin:0 0 8px} .ch-num{font-family:"Zen Kaku Gothic New";font-weight:700;font-size:12px;letter-spacing:.2em;color:var(--accent)}
+.chapter h2{font-family:"Zen Kaku Gothic New";font-weight:900;font-size:clamp(23px,5.5vw,30px);margin:0 0 10px}
+.lead{color:var(--ink-2);font-size:15px;margin:0}
+.entry{margin:12px 0 0;font-size:13.5px;color:var(--ink-2)}
+.entry .el{font-family:"Zen Kaku Gothic New";font-weight:700;font-size:11px;letter-spacing:.08em;color:var(--halo);background:var(--tip-bg);border:1px solid #cfe0f5;border-radius:5px;padding:2px 7px;margin-right:9px}
+.steps{list-style:none;margin:26px 0 0;padding:0;counter-reset:step}
+.step{display:grid;grid-template-columns:34px 1fr;gap:16px;position:relative}
+.rail{position:relative;display:flex;justify-content:center}
+.rail::before{content:"";position:absolute;top:0;bottom:-8px;left:50%;transform:translateX(-50%);width:2px;background:var(--line)}
+.step:last-child .rail::before{display:none}
+.node{counter-increment:step;position:relative;z-index:1;margin-top:2px;width:30px;height:30px;border-radius:50%;background:#fff;border:2px solid var(--halo);display:flex;align-items:center;justify-content:center;font-family:"Zen Kaku Gothic New";font-weight:700;font-size:13px;color:var(--halo)}
+.node::before{content:counter(step,decimal-leading-zero)}
+.node-warn,.node-tip{border:none;color:#fff;font-size:15px;font-weight:700}
+.node-warn::before,.node-tip::before{content:none} .node-warn{background:var(--warn-bd)} .node-tip{background:var(--tip-bd)}
+.body{padding-bottom:30px;min-width:0}
+.st{font-family:"Zen Kaku Gothic New";font-weight:700;font-size:16.5px;margin:4px 0 12px;line-height:1.5}
+.shot{margin:0 0 12px}
+.shot img{width:100%;max-width:300px;border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 22px -12px rgba(12,21,38,.35);background:#000}
+.cap{margin:0;font-size:14px;color:var(--ink-2);max-width:42em}
+.note-row .body{padding-bottom:24px}
+.note{border-radius:12px;padding:15px 16px 16px;border:1px solid}
+.note .nt{font-family:"Zen Kaku Gothic New";font-weight:700;font-size:15px;margin:0 0 5px}
+.note .nb{margin:0;font-size:14px;line-height:1.7}
+.note-warn{background:var(--warn-bg);border-color:#f0d79a} .note-warn .nt{color:var(--warn-ink)} .note-warn .nb{color:#7a5416}
+.note-tip{background:var(--tip-bg);border-color:#c9d9f2} .note-tip .nt{color:var(--tip-ink)} .note-tip .nb{color:#26457f}
+.detour .dshots{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px}
+.shot-sm{margin:0} .shot-sm img{width:100%;max-width:190px;border:1px solid #f0d79a;border-radius:11px;background:#000}
+.shot-sm figcaption{font-size:12.5px;color:#7a5416;margin-top:6px;max-width:190px}
+footer{border-top:1px solid var(--line);background:#fff}
+.foot-in{max-width:720px;margin:0 auto;padding:34px 22px 48px}
+.foot-in .flogo img{height:26px;width:auto;margin-bottom:16px}
+.flinks{display:flex;flex-wrap:wrap;gap:10px 18px;margin:0 0 22px}
+.flinks a{font-size:13.5px;font-weight:700;color:var(--halo);text-decoration:none;border-bottom:2px solid #cfe0f5}
+.flinks a:hover{border-bottom-color:var(--halo)}
+.corp{border-top:1px solid var(--line);padding-top:18px;display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:13px;color:var(--ink-2);max-width:30em}
+.corp dt{font-weight:700;color:var(--ink)} .corp dd{margin:0}
+.fnote{margin:20px 0 0;font-size:12.5px;color:var(--muted)}
+a:focus-visible,.tabs a:focus-visible{outline:3px solid var(--halo-2);outline-offset:2px;border-radius:4px}
+@media (min-width:560px){.step{grid-template-columns:38px 1fr;gap:20px} .shot img{max-width:320px}}
+
+.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+ min-height:190px;border:2px dashed #c9d2dd;border-radius:10px;background:#f7f9fc;padding:24px}
+.ph-id{font:700 12px/1 ui-monospace,monospace;letter-spacing:.08em;color:#8a97a8;
+ border:1px solid #d5dde7;border-radius:999px;padding:5px 10px;background:#fff}
+.ph-t{font-size:13px;color:#8a97a8}
+.wordmark{font:900 20px/1 'Zen Kaku Gothic New',sans-serif;letter-spacing:.06em;color:#fff}
+footer .wordmark{color:#fff;opacity:.9}
+</style></head><body>
+<header class="hero"><div class="hero-in"><div class="brand"><span class="wordmark">HALOSPORTS</span></div>
+<p class="kicker">大会主催者向け 運営ガイド</p>
+<h1><span class="em">大会をつくって、</span><br>運営をはじめる</h1>
+<p class="sub">大会の作成から、エントリーの承認・参加メンバー名簿の確認・参加費の受け取りまで。運営に必要な操作を、実際の画面にそって案内します。</p>
+<div class="chips"><span>大会作成</span><span>参加費・振込先</span><span>エントリー承認</span><span>参加メンバー名簿</span><span>入金管理</span><span>スタッフ管理</span></div></div></header>
+<div class="intro"><div class="acard"><h2>大会参加者の方へ</h2>
+<ul><li>チームを作って大会にエントリーする手順は、<b>参加者向けガイド</b>にまとめています。</li>
+<li>参加者は、大会作成側の設定によっては<b>代表者だけでエントリーを完了</b>できます（選手全員の登録は不要）。この設定は第2章で行います。</li></ul>
+<p class="oline">大会に参加する方は <a href="index.html">参加者向けガイド →</a></p></div></div>
+<nav class="tabs" aria-label="章のナビゲーション"><div class="tabs-in"><a href="#ch1"><span class="n">01</span>大会をひらく（運営をはじめる）</a><a href="#ch2"><span class="n">02</span>大会をつくる</a><a href="#ch3"><span class="n">03</span>運営メニューを知る</a><a href="#ch4"><span class="n">04</span>エントリーを承認する</a><a href="#ch5"><span class="n">05</span>参加メンバー名簿を確認する</a><a href="#ch6"><span class="n">06</span>参加費の入金を確認する</a><a href="#ch7"><span class="n">07</span>運営スタッフを追加する</a></div></nav>
+<main><section id="ch1" class="chapter"><header class="ch-head"><p class="eyebrow"><span class="ch-num">第01章</span></p><h2>大会をひらく（運営をはじめる）</h2><p class="lead">大会作成の入口は2つ。ヘッダーメニューの「大会管理」か、大会管理トップの「＋大会を作成」から始めます。</p><p class="entry"><span class="el">入口</span>ヘッダーメニュー →「大会管理」</p></header><ol class="steps"><li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">メニューから大会管理へ</h3><figure class="shot"><div class="ph"><span class="ph-id">6969</span><span class="ph-t">メニューから大会管理へ</span></div></figure><p class="cap">ヘッダーメニューをひらき、アカウント名の下にある「大会管理」を選びます。ログイン中のアカウントで操作します。</p></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">大会管理トップをひらく</h3><figure class="shot"><div class="ph"><span class="ph-id">6966</span><span class="ph-t">大会管理トップをひらく</span></div></figure><p class="cap">管理している大会の一覧が表示されます。新しく作るときは「＋大会を作成」を押します。</p></div></li></ol></section>
+<section id="ch2" class="chapter"><header class="ch-head"><p class="eyebrow"><span class="ch-num">第02章</span></p><h2>大会をつくる</h2><p class="lead">1つのフォームで、基本情報・エントリー条件・参加費・メンバー登録の要否まで設定します。作成すると、あなたが自動的に大会責任者になります。</p><p class="entry"><span class="el">入口</span>大会管理 →「＋大会を作成」</p></header><ol class="steps"><li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">基本情報を入力する</h3><figure class="shot"><div class="ph"><span class="ph-id">6974</span><span class="ph-t">基本情報を入力する</span></div></figure><p class="cap">大会名・種目・開始／終了日時・都道府県・会場詳細を入力します。複数日開催のときは、終了日時に最終日の時刻を入れます。</p></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">種目を選ぶ</h3><figure class="shot"><div class="ph"><span class="ph-id">6968</span><span class="ph-t">種目を選ぶ</span></div></figure><p class="cap">バスケットボール・フットサル・ハンドボール・水球・フィールドホッケーから選びます。</p></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">都道府県を選ぶ</h3><figure class="shot"><div class="ph"><span class="ph-id">6967</span><span class="ph-t">都道府県を選ぶ</span></div></figure><p class="cap">開催地の都道府県を選びます。</p></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">地図・紹介URL・説明を足す</h3><figure class="shot"><div class="ph"><span class="ph-id">6975</span><span class="ph-t">地図・紹介URL・説明を足す</span></div></figure><p class="cap">地図URL（任意）を入れると詳細ページに地図リンクが、大会紹介URL（任意）を入れると公式サイトへのリンクが表示されます。大会説明は1000文字まで。</p></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">エントリー条件を決める</h3><figure class="shot"><div class="ph"><span class="ph-id">6960</span><span class="ph-t">エントリー条件を決める</span></div></figure><p class="cap">エントリー定員（参加できるチーム数の上限）と、エントリーステータス（受付中／受付終了）を設定します。</p></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">参加費を設定する</h3><figure class="shot"><div class="ph"><span class="ph-id">6976</span><span class="ph-t">参加費を設定する</span></div></figure><p class="cap">「参加費徴収あり」にすると、参加費用・支払い方法（クレジットカード／銀行振込／現金手渡し）・支払い期限を設定できます。振込を使う場合は振込先口座も入力します（現金手渡しのみなら口座入力は不要）。</p></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">メンバー登録の要否を決める</h3><figure class="shot"><div class="ph"><span class="ph-id">6959</span><span class="ph-t">メンバー登録の要否を決める</span></div></figure><p class="cap">「メンバー登録必須」をオンにすると、出場選手の事前登録が必要になります。オフなら、代表者だけでエントリーを完了できます。任意で性別・生年月日の登録や、自由項目（最大8件）も足せます。</p></div></li>
+<li class="step note-row"><div class="rail"><span class="node node-tip">＋</span></div><div class="body"><div class="note note-tip"><p class="nt">「メンバー登録必須」は参加ハードルに直結します</p><p class="nb">オフにすると、参加者は代表者ひとりでエントリーを完了できます。選手一人ひとりのアカウントは不要です。まずは参加してもらいたい大会では、オフから始めるのがおすすめです。個人成績や得点ランキングを使いたくなったら、オンに切り替えます。</p></div></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">大会を作成する</h3><figure class="shot"><div class="ph"><span class="ph-id">6970</span><span class="ph-t">大会を作成する</span></div></figure><p class="cap">入力を確認し「大会を作成」を押します。確認ダイアログで「大会を作成」を選ぶと確定します。</p></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">作成完了</h3><figure class="shot"><div class="ph"><span class="ph-id">6971</span><span class="ph-t">作成完了</span></div></figure><p class="cap">大会詳細ページ（運営者向け）が開きます。左上の「大会運営メニュー」から、ここまでの続きを進めます。</p></div></li></ol></section>
+<section id="ch3" class="chapter"><header class="ch-head"><p class="eyebrow"><span class="ch-num">第03章</span></p><h2>運営メニューを知る</h2><p class="lead">作成後の運営は、すべて「大会運営メニュー」に集まっています。ここが運営の司令塔です。</p><p class="entry"><span class="el">入口</span>大会詳細 →「大会運営メニュー」</p></header><ol class="steps"><li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">運営メニューをひらく</h3><figure class="shot"><div class="ph"><span class="ph-id">6977</span><span class="ph-t">運営メニューをひらく</span></div></figure><p class="cap">大会詳細ページの「大会運営メニュー」を押すと、運営に必要な操作が一覧で開きます。</p></div></li>
+<li class="step note-row"><div class="rail"><span class="node node-tip">＋</span></div><div class="body"><div class="note note-tip"><p class="nt">各メニューでできること</p><p class="nb">「大会情報を編集」＝作成した内容の修正。「スタッフ管理」＝運営を手伝う人の追加（第7章）。「エントリー管理」＝参加チームの申請確認・承認（第4章）と、登録された参加メンバー名簿の確認（第5章）。「口座管理」＝参加費の入金確認（第6章）。「試合を作成」「グループを作成」「トーナメント表を作成」＝対戦の組み立て。</p></div></div></li>
+<li class="step note-row"><div class="rail"><span class="node node-warn">！</span></div><div class="body"><div class="note note-warn"><p class="nt">対戦の組み立てについて</p><p class="nb">試合作成・グループ・トーナメント表の詳しい手順は、次版で画面つきで追加します。</p></div></div></li></ol></section>
+<section id="ch4" class="chapter"><header class="ch-head"><p class="eyebrow"><span class="ch-num">第04章</span></p><h2>エントリーを承認する</h2><p class="lead">参加チームからのエントリーは「申請 → 主催者の承認」で確定します。承認するまで出場は確定しません。届いた申請を確認して、順に承認していきます。</p><p class="entry"><span class="el">入口</span>大会運営メニュー →「エントリー管理」</p></header><ol class="steps"><li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">エントリー管理をひらく</h3><figure class="shot"><div class="ph"><span class="ph-id">E401</span><span class="ph-t">エントリー管理をひらく</span></div></figure><p class="cap">大会運営メニューから「エントリー管理」を選びます。申請中・承認済みのチームが一覧で並びます。</p></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">申請中のエントリーを確認する</h3><figure class="shot"><div class="ph"><span class="ph-id">E402</span><span class="ph-t">申請中のエントリーを確認する</span></div></figure><p class="cap">申請中のチームには、チーム名・代表者・申請日時が表示されます。カードを開くと、登録された内容を確認できます。</p></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">承認する</h3><figure class="shot"><div class="ph"><span class="ph-id">E403</span><span class="ph-t">承認する</span></div></figure><p class="cap">「承認」を押すと確認ダイアログが表示されます。内容を確認して承認すると、そのチームの出場が確定します。</p></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">承認後の状態を確認する</h3><figure class="shot"><div class="ph"><span class="ph-id">E404</span><span class="ph-t">承認後の状態を確認する</span></div></figure><p class="cap">承認したチームは一覧上で状態が変わり、エントリー数に反映されます。定員に達したら、大会情報の編集からエントリーステータスを「受付終了」に切り替えます。</p></div></li>
+<li class="step note-row"><div class="rail"><span class="node node-tip">＋</span></div><div class="body"><div class="note note-tip"><p class="nt">参加条件を満たさない申請は却下できます</p><p class="nb">却下すると、そのチームは出場チームに含まれません。判断に迷う場合は、承認せずに保留したまま代表者に連絡を取ることもできます。</p></div></div></li></ol></section>
+<section id="ch5" class="chapter"><header class="ch-head"><p class="eyebrow"><span class="ch-num">第05章</span></p><h2>参加メンバー名簿を確認する</h2><p class="lead">「メンバー登録必須」をオンにした大会では、各チームが出場選手を登録します。主催者は、その名簿を画面上でいつでも確認できます。名簿をメールで集めて集計する作業は必要ありません。</p><p class="entry"><span class="el">入口</span>エントリー管理 → チームを選ぶ</p></header><ol class="steps"><li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">チームの参加メンバーを開く</h3><figure class="shot"><div class="ph"><span class="ph-id">E501</span><span class="ph-t">チームの参加メンバーを開く</span></div></figure><p class="cap">エントリー管理の一覧からチームを選ぶと、そのチームが登録した参加メンバーが表示されます。</p></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">名簿の中身を確認する</h3><figure class="shot"><div class="ph"><span class="ph-id">E502</span><span class="ph-t">名簿の中身を確認する</span></div></figure><p class="cap">登録された選手の情報（大会作成時に指定した項目）を一覧で確認できます。未登録のチームも一目で分かります。</p></div></li>
+<li class="step note-row"><div class="rail"><span class="node node-tip">＋</span></div><div class="body"><div class="note note-tip"><p class="nt">名簿をメールで集める作業がなくなります</p><p class="nb">Excelを添付して各チームに配り、締切を追いかけて回収し、手元で1つにまとめる——という一連の作業が不要になります。締切に間に合っていないチームも、画面を見ればその場で分かります。</p></div></div></li>
+<li class="step note-row"><div class="rail"><span class="node node-warn">！</span></div><div class="body"><div class="note note-warn"><p class="nt">この画面は「メンバー登録必須」がオンの大会だけです</p><p class="nb">第2章で「メンバー登録必須」をオフにした大会では、選手個人の登録が行われないため、名簿は集まりません。名簿を管理したい大会では、作成時にオンにしておきます。</p></div></div></li></ol></section>
+<section id="ch6" class="chapter"><header class="ch-head"><p class="eyebrow"><span class="ch-num">第06章</span></p><h2>参加費の入金を確認する</h2><p class="lead">「参加費徴収あり」で作成した大会では、チームごとの支払い状況をこの画面で管理します。誰が払っていて、誰がまだかが一覧で分かります。</p><p class="entry"><span class="el">入口</span>大会運営メニュー →「口座管理」</p></header><ol class="steps"><li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">口座管理をひらく</h3><figure class="shot"><div class="ph"><span class="ph-id">E601</span><span class="ph-t">口座管理をひらく</span></div></figure><p class="cap">大会運営メニューから「口座管理」を選びます。参加費の設定内容と、チームごとの支払い状況が表示されます。</p></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">支払いステータスを確認する</h3><figure class="shot"><div class="ph"><span class="ph-id">E602</span><span class="ph-t">支払いステータスを確認する</span></div></figure><p class="cap">チームごとに支払い状況が表示されます。未入金のチームだけを拾って連絡できます。</p></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">入金を確認する</h3><figure class="shot"><div class="ph"><span class="ph-id">E603</span><span class="ph-t">入金を確認する</span></div></figure><p class="cap">銀行振込・現金手渡しの場合は、入金を確認したうえで主催者側でステータスを更新します。</p></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">現在残高を確認する</h3><figure class="shot"><div class="ph"><span class="ph-id">E604</span><span class="ph-t">現在残高を確認する</span></div></figure><p class="cap">集まっている参加費の合計を確認できます。</p></div></li>
+<li class="step note-row"><div class="rail"><span class="node node-tip">＋</span></div><div class="body"><div class="note note-tip"><p class="nt">「払いましたか」の後追い連絡が減ります</p><p class="nb">支払い期限を過ぎているチームがその場で特定できるため、全体宛のリマインドではなく、必要なチームにだけ連絡できます。</p></div></div></li></ol></section>
+<section id="ch7" class="chapter"><header class="ch-head"><p class="eyebrow"><span class="ch-num">第07章</span></p><h2>運営スタッフを追加する</h2><p class="lead">大会運営を複数人で分担するときは、スタッフを追加します。追加された人も、自分のアカウントから運営メニューを開けるようになります。</p><p class="entry"><span class="el">入口</span>大会運営メニュー →「スタッフ管理」</p></header><ol class="steps"><li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">スタッフ管理をひらく</h3><figure class="shot"><div class="ph"><span class="ph-id">E701</span><span class="ph-t">スタッフ管理をひらく</span></div></figure><p class="cap">大会運営メニューから「スタッフ管理」を選びます。現在の運営メンバーが一覧で表示されます。</p></div></li>
+<li class="step"><div class="rail"><span class="node"></span></div><div class="body"><h3 class="st">スタッフを追加する</h3><figure class="shot"><div class="ph"><span class="ph-id">E702</span><span class="ph-t">スタッフを追加する</span></div></figure><p class="cap">運営を手伝ってもらう人を追加します。追加された人は、自分のアカウントからこの大会の運営メニューを開けるようになります。</p></div></li>
+<li class="step note-row"><div class="rail"><span class="node node-warn">！</span></div><div class="body"><div class="note note-warn"><p class="nt">この先は次版で追加します</p><p class="nb">試合の作成、グループ・トーナメント表の組み立て、当日のスコア入力については、次版で画面つきで追加します。</p></div></div></li></ol></section>
+</main>
+<footer><div class="foot-in"><div class="flogo"><span class="wordmark">HALOSPORTS</span></div>
+<div class="flinks"><a href="https://www.halosports.jp/">サービスサイト</a><a href="https://lp.halosports.jp/organizer">主催者向けのご案内</a><a href="https://lp.halosports.jp/user">参加者向けのご案内</a></div>
+<dl class="corp"><dt>法人名</dt><dd>一般社団法人Halosports</dd><dt>設立</dt><dd>2025年10月</dd><dt>所在地</dt><dd>愛知県名古屋市中村区名駅4-24-5 第2森ビル401</dd><dt>代表理事</dt><dd>相澤 宏次</dd><dt>連絡先</dt><dd>Welcome@halosports.jp</dd></dl>
+<p class="fnote">本ガイドは大会主催者向けの操作手順です。画面はサンプルデータで作成しています。試合作成・グループ／トーナメント表の手順は次版で追加予定です。</p></div></footer>
+<script>(function(){var l=[].slice.call(document.querySelectorAll('.tabs a')),m={};l.forEach(function(a){m[a.getAttribute('href').slice(1)]=a;});var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active');});var a=m[e.target.id];if(a){a.classList.add('active');a.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});}}});},{rootMargin:'-45% 0px -50% 0px'});document.querySelectorAll('.chapter').forEach(function(s){o.observe(s);});})();</script>
+</body></html>
